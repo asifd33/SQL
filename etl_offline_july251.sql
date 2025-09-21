@@ -1,0 +1,1325 @@
+---SELECT SUBSTR('ASID33@GMAIL.COM',1,INSTR('ASID33@GMAIL.COM','@',1,1)-1) UNAME,
+---SUBSTR('ASID33@GMAIL.COM',INSTR('ASID33@GMAIL.COM','@',1,1)+1,
+---INSTR('ASID33@GMAIL.COM','.',1,1)-1-INSTR('ASID33@GMAIL.COM','@',1,1)) SERVICEP,
+---SUBSTR ('ASID33@GMAIL.COM',INSTR('ASID33@GMAIL.COM','.')+1) DOMAIN FROM DUAL;
+---COMMIT;
+--select substr ('asif sultansha dafedar',1,instr('asif sultansha dafedar',' ',1,1)-1)
+--fname from dual;
+--select substr('asif sultansha dafedar',instr('asif sultansha dafedar',' ')+1,
+--instr('asif sultansha dafedar',' ',1,2)-1-instr('asif sultansha dafedar',' ')-1)
+--mname from dual;
+--select substr('asif sultansha dafedar',instr('asif sultansha dafedar',' ')) lastn from dual;
+--
+---------
+--CREATE TABLE EMP
+--       (EMPNO NUMBER(4),
+--    ENAME VARCHAR2(10),
+--    JOB VARCHAR2(9),
+--    MGR NUMBER(4),
+--    HIREDATE DATE,
+--    SAL NUMBER(7,2),
+--    COMM NUMBER(7,2),
+--    DEPTNO NUMBER(2));
+--
+
+--CREATE TABLE DEPT_
+--       (DEPT NUMBER(2) ,
+--    DNAME VARCHAR2(14) ,
+--    LOC VARCHAR2(13) ) ;
+--
+--INSERT INTO DEPT VALUES
+--    (10,'ACCOUNTING','NEW YORK');
+--INSERT INTO DEPT VALUES (20,'RESEARCH','DALLAS');
+--INSERT INTO DEPT VALUES
+--    (30,'SALES','CHICAGO');
+--INSERT INTO DEPT VALUES
+--    (40,'OPERATIONS','BOSTON');
+--commit;
+--select* from DEPT;
+--
+--CREATE TABLE EMP
+--       (EMPNO NUMBER(4) ,
+--    ENAME VARCHAR2(10),
+--    JOB VARCHAR2(9),
+--    MGR NUMBER(4),
+--    HIREDATE DATE,
+--    SAL NUMBER(7,2),
+--    COMM NUMBER(7,2),
+--    DEPTNO NUMBER(2)) ;
+
+
+--INSERT INTO EMP VALUES
+--(7369,'SMITH','CLERK',7902,to_date('17-12-1980','dd-mm-yyyy'),800,NULL,20);
+--INSERT INTO EMP VALUES
+--(7499,'ALLEN','SALESMAN',7698,to_date('20-2-1981','dd-mm-yyyy'),1600,300,30);
+--INSERT INTO EMP VALUES
+--(7521,'WARD','SALESMAN',7698,to_date('22-2-1981','dd-mm-yyyy'),1250,500,30);
+--INSERT INTO EMP VALUES
+--(7566,'JONES','MANAGER',7839,to_date('2-4-1981','dd-mm-yyyy'),2975,NULL,20);
+--INSERT INTO EMP VALUES
+--(7654,'MARTIN','SALESMAN',7698,to_date('28-9-1981','dd-mm-yyyy'),1250,1400,30);
+--INSERT INTO EMP VALUES
+--(7698,'BLAKE','MANAGER',7839,to_date('1-5-1981','dd-mm-yyyy'),2850,NULL,30);
+--INSERT INTO EMP VALUES
+--(7782,'CLARK','MANAGER',7839,to_date('9-6-1981','dd-mm-yyyy'),2450,NULL,10);
+--INSERT INTO EMP VALUES
+--(7788,'SCOTT','ANALYST',7566,to_date('13-JUL-87','dd-mm-rr')-85,3000,NULL,20);
+--INSERT INTO EMP VALUES
+--(7839,'KING','PRESIDENT',NULL,to_date('17-11-1981','dd-mm-yyyy'),5000,NULL,10);
+--INSERT INTO EMP VALUES
+--(7844,'TURNER','SALESMAN',7698,to_date('8-9-1981','dd-mm-yyyy'),1500,0,30);
+--INSERT INTO EMP VALUES
+--(7876,'ADAMS','CLERK',7788,to_date('13-JUL-87', 'dd-mm-rr')-51,1100,NULL,20);
+--INSERT INTO EMP VALUES
+--(7900,'JAMES','CLERK',7698,to_date('3-12-1981','dd-mm-yyyy'),950,NULL,30);
+--INSERT INTO EMP VALUES
+--(7902,'FORD','ANALYST',7566,to_date('3-12-1981','dd-mm-yyyy'),3000,NULL,20);
+--INSERT INTO EMP VALUES
+--(7934,'MILLER','CLERK',7782,to_date('23-1-1982','dd-mm-yyyy'),1300,NULL,10);
+--commit;
+--
+--select * from emp;
+--
+--CREATE TABLE SALGRADE1
+--      ( GRADE NUMBER,
+--    LOSAL NUMBER,
+--    HISAL NUMBER );
+--
+--INSERT INTO SALGRADE1 VALUES (1,700,1200);
+--INSERT INTO SALGRADE1 VALUES (2,1201,1400);
+--INSERT INTO SALGRADE1 VALUES (3,1401,2000);
+--INSERT INTO SALGRADE1 VALUES (4,2001,3000);
+--INSERT INTO SALGRADE1 VALUES (5,3001,9999);
+--select * from salgrade1;
+--
+---------N^TH RANK---
+--select  * from emp1;
+--select * from(select emp1.*,dense_rank() over(order by sal desc) 
+--as rank from emp1) where rank = 2;
+--select * from (select emp1.*, dense_rank() over (partition by deptno order by sal desc) 
+--as rank from emp1) where rank =1;
+--select * from (select emp1.*, dense_rank() over (partition by deptno order by sal desc) 
+--as rank from emp1) where rank ='&N';
+--
+----------LIKE OPERATOR,,,,A%-STARTING,%A -ENDING---
+--select ename from emp1 where ename like 'A%';
+--select ename from emp1 where ename like '%A%';
+--select ename from emp1 where ename like '_L%';
+--select ename from emp1 where length (ENAME) =5;
+--
+--commit;
+--------------------JOINS
+--select * from emp1;
+--select * from dept;
+--select e.empno,e.ename,e.sal,d.dname,d.loc
+--from emp1 e ,dept d
+--where e.deptno=d.deptno;
+---------------------
+-------COMBINIG ALL COLUMS FROM TWO OR MULTIPLE TABLES--
+--SELECT EMP1.*,DEPT.*
+--FROM  EMP1,DEPT
+--WHERE EMP1.DEPTNO=DEPT.DEPTNO;
+---------OR----E  D TABLE ALIYAS NAME--
+--SELECT E.*,D.*
+--FROM EMP1 E,DEPT D
+--WHERE E.DEPTNO=D.DEPTNO;
+--SELECT * FROM EMP1;
+--SELECT  ROWNUM ROLLNUM, EMP1.* FROM EMP1;
+--
+-------SUBSTR 
+--SYNTAX: SUBSTR('CN',STARTPOINT,REQUIRED LENGTH) AS FROM DUAL;
+--DAFEDAR----DAR
+--SELECT SUBSTR('DAFEDAR',5,3)FROM DUAL;---DAR
+-------INSTR
+--SYNTAX:INSTR('CN',START POINT,SEARCH PIONT,'OCCURANCE') FROM DUAL;
+--------
+--SUBSTR,,INSTR  ASIF@GMAIL.COM= ASIF GMAIL COM
+--SELECT SUBSTR ('ASIF@GMAIL.COM',1, INSTR('ASIF@GMAIL.COM','@')-1) U_NAME FROM DUAL;--ASIF
+--SELECT SUBSTR('ASIF@GMAIL.COM',INSTR ('ASIF@GMAIL.COM','@')+1,
+--INSTR('ASIF@GMAIL.COM','.')-1-INSTR('ASIF@GMAIL.COM','@')) SPROVIDER FROM DUAL;--GMAIL
+--SELECT SUBSTR ('ASIF@GMAIL.COM', INSTR('ASIF@GMAIL.COM','.')+1) DOMAIN FROM DUAL;--COM
+------
+--SELECT SUBSTR ('ASIF@GMAIL.COM',1, INSTR('ASIF@GMAIL.COM','@')-1) UNAME,SUBSTR('ASIF@GMAIL.COM',INSTR ('ASIF@GMAIL.COM','@')+1,
+--INSTR('ASIF@GMAIL.COM','.')-1-INSTR('ASIF@GMAIL.COM','@')) SPROVIDER,
+--SUBSTR ('ASIF@GMAIL.COM', INSTR('ASIF@GMAIL.COM','.')+1) DOMAIN FROM DUAL;
+--------
+------PADDING LPAD,,RPAD-
+--SYNTAX('CN',TOTAL LENGTH,REQ CHARACTER)FROM DUAL;
+--SELECT LPAD('ASIF',8,'$')FROM DUAL;
+--SELECT RPAD('ASIF',8,'$')FROM DUAL;
+--
+--------FIND YOUR AGE?
+--SELECT ROUND(MONTHS_BETWEEN(SYSDATE,'25-05-1993')/12 )AGE FROM DUAL;
+--
+------REPLACE
+--SELECT REPLACE('DAFEDAT','T','R') REPLACE FROM DUAL;
+--SELECT REPLACE('INDIA IS GREAT','BEST','GREAT') REPLACE FROM DUAL;
+---------TRANSLATE
+--SELECT TRANSLATE('RAM','M','J') TRANSLATE FROM DUAL;
+--------LENGTH
+--SELECT LENGTH('ASIFDAFEDAR') SIZE1 FROM DUAL;
+--SELECT LENGTH('ABCDEFGHIJKLMNOPQRSTUVWXYZ') SIZE1 FROM DUAL;
+-----FIND THE REPEATED CHARACTER
+--SELECT LENGTH(REPLACE('ASIFAHMED','A')) LENGTH FROM DUAL;
+--COMMIT;
+------HOW TO FIND DUPLICATE-- 
+--SELECT * FROM EMP1;
+--SELECT SAL, COUNT(*) FROM emp1 GROUP BY SAL HAVING COUNT(*)>1;
+--SELECT DEPTNO, COUNT(*) FROM emp1 GROUP BY DEPTNO HAVING COUNT(*)>1;
+--SELECT * FROM (FROM emp1.*,DENSE_RANK() OVER (ORDAR BY SAL DESC)
+-- AS RANK FROM EMP1)WHERE RANK = 2;
+-- select * from (select emp1.*, dense_rank() over (partition by deptno order by sal desc) 
+-- as rank from emp1 ) where rank=2;
+-- select * from (select emp1.*, dense_rank() over (partition by deptno order by sal desc) 
+--as rank from emp1) where rank =1;
+--select * from(select emp1.*, dense_rank() over (partition by deptno order by sal desc)
+--rank from emp1) where rank='&n';
+--------combining colums
+--select emp1.*,dept.*
+--from emp1,dept
+--where emp1.deptno=dept.deptno;
+------or aliyas--
+--select e.*,d.*
+--from emp1 e,dept d
+--where e.deptno=d.deptno;
+------find the deptno wise max sal by using group by--
+--select deptno,max(sal) as maxsal from emp1 group by deptno;
+------find the deptno wise max sal by using group by in asc order--
+--select deptno,max(sal) as maxsal from emp1 group by deptno order by max(sal) desc;
+--select deptno,sum(sal) as maxsal from emp1 group by deptno order by sum(sal) desc;
+--select deptno,round(avg(sal)) as maxsal from emp1 group by deptno 
+--order by avg(sal) desc;
+------backup table or duplicate table--
+--create table emp_01 as select * from emp1;
+--select * from emp1;
+--desc emp1;
+--commit;
+--create table asifemp as select * from emp1 where 1=0;
+--select * from asifemp;
+--insert into asifemp select *from emp1;
+--truncate table asifemp;
+--insert into asifemp select *from emp1;
+--SELECT EMP1.*,DEPT.*
+--FROM EMP1,DEPT
+--WHERE EMP1.DEPTNO=DEPT.DEPTNO;
+---------asif.dafedar@gmail.com-----first_name  last_name  domain---
+--
+--select substr('asif.dafedar@gmail.com',1, instr('asif.dafedar@gmail.com','.')-1)
+--first_name,
+--substr('asif.dafedar@gmail.com',instr('asif.dafedar@gmail.com','.',1,1)+1,
+--instr('asif.dafedar@gmail.com','@')-instr('asif.dafedar@gmail.com','.')-1) 
+--L_name,
+--substr('asif.dafedar@gmail.com',instr('asif.dafedar@gmail.com','.',1,2)+1) domain FROM DUAL;
+-------DAFEDAR.ASIF@GMAIL.COM----FN  LN  DM--
+--SELECT SUBSTR('DAFEDAR.ASIF@GMAIL.COM',1,INSTR('DAFEDAR.ASIF@GMAIL.COM','.')-1)
+--FIRST_N,
+--SUBSTR('DAFEDAR.ASIF@GMAIL.COM',INSTR('DAFEDAR.ASIF@GMAIL.COM','.')+1,
+--INSTR('DAFEDAR.ASIF@GMAIL.COM','@')-INSTR('DAFEDAR.ASIF@GMAIL.COM','.')-1)
+--L_NAME,
+--SUBSTR('DAFEDAR.ASIF@GMAIL.COM',INSTR('DAFEDAR.ASIF@GMAIL.COM','.',1,2)+1)
+--DOMAIM FROM DUAL;
+--COMMIT;-----------------------
+--select * from (select emp1.*,dense_rank() over (partition by deptno order by sal)
+--as rank from emp1)where rank=2;
+--select deptno,min(sal) as sum_sal from emp1 group by deptno order by min(sal)desc;
+-------------------------------
+--select e.*,d.*
+--from  emp1 e,dept d
+--where e.deptno=d.deptno;
+------
+--select emp1.*,dept.*
+--from emp1 ,dept 
+--where emp1.deptno=dept.deptno;
+--select * 
+--from emp1
+--where comm is  null;
+--select nvl(comm,500) from emp1;
+--select* from emp1;
+--select substr('asif.dafedar@gmail.com',1,instr('asif.dafedar@gmail.com','.')-1) as first_name,
+--substr('asif.dafedar@gmail.com',instr('asif.dafedar@gmail.com','.')+1,
+--instr('asif.dafedar@gmail.com','@')-instr('asif.dafedar@gmail.com','.')-1) as  last_name,
+--substr('asif.dafedar@gmail.com',instr('asif.dafedar@gmail.com','.',1,2)+1) as domain from dual;
+------
+--select round(months_between (sysdate,'27-07-2000')/12) age from dual;
+--
+--select sal, count(*)
+--from emp1
+--group by sal
+--having count (*)>1;
+--SELECT JOB,COUNT(*)
+--FROM EMP1
+--GROUP BY JOB
+--HAVING COUNT(*)>1;
+--------'AB CD EF'---
+--SELECT SUBSTR ('AB CD EF',1,INSTR('AB CD EF',' ')-1) AS F_L,
+--SUBSTR ('AB CD EF',INSTR('AB CD EF',' ',1,1)+1,
+--INSTR('AB CD EF',' ',1,2)-INSTR('AB CD EF',' ')-1) M_L,
+--SUBSTR('AB CD EF',INSTR('AB CD EF',' ',1,2)+1) L_L FROM DUAL;
+--------'1,2.3'  ----1  2   3---
+--SELECT SUBSTR('1,2.3',1,INSTR('1,2.3',',')-1) FST,
+--SUBSTR('1,2.3',INSTR('1,2.3',',')+1,
+--INSTR('1,2.3','.')-INSTR('1,2.3',',')-1)AS MDL,
+--SUBSTR('1,2.3',INSTR('1,2.3','.')+1) AS LST FROM DUAL;
+--COMMIT;
+-------'ASIFAHMED SULTANSHA DAFEDAR'---
+--SELECT SUBSTR('ASIFAHMED SULTANSHA DAFEDAR',1,
+--INSTR('ASIFAHMED SULTANSHA DAFEDAR',' ')-1) F_NAME,
+--SUBSTR('ASIFAHMED SULTANSHA DAFEDAR',INSTR('ASIFAHMED SULTANSHA DAFEDAR',' ',1,1)+1,
+--INSTR('ASIFAHMED SULTANSHA DAFEDAR',' ',1,2)-INSTR('ASIFAHMED SULTANSHA DAFEDAR',' ')-1)
+--M_NAME,
+--SUBSTR('ASIFAHMED SULTANSHA DAFEDAR',INSTR('ASIFAHMED SULTANSHA DAFEDAR',' ',1,2)+1) 
+--L_NAME FROM DUAL;
+--commit;
+--select translate('anand samboji','a','t') r_place from dual;
+-------'asif.dafedar@gmail.com'---fname lname sp--
+--select substr('asif.dafedar@gmail.com',1,instr('asif.dafedar@gmail.com','.')-1) 
+--r_name,
+--substr('asif.dafedar@gmail.com',instr('asif.dafedar@gmail.com','.')+1,
+--instr('asif.dafedar@gmail.com','@')-instr('asif.dafedar@gmail.com','.')-1)
+--l_name,
+--substr('asif.dafedar@gmail.com',instr('asif.dafedar@gmail.com','@')+1,
+--instr('asif.dafedar@gmail.com','.',1,2)-instr('asif.dafedar@gmail.com','@')-1) 
+--sprod,
+--substr('asif.dafedar@gmail.com',instr('asif.dafedar@gmail.com','.',1,2)+1) 
+--domain from dual;
+-------'asif.dafedar@gmail.com'
+--select substr('asif.dafedar@gmail.com',1,instr('asif.dafedar@gmail.com','.')-1)
+--f_name from dual;
+--select substr('asif.dafedar@gmail.com',instr('asif.dafedar@gmail.com','.')+1,
+--instr('asif.dafedar@gmail.com','@')-instr('asif.dafedar@gmail.com','.')-1) l_name
+--from dual;
+--select substr('asif.dafedar@gmail.com',instr('asif.dafedar@gmail.com','@')+1,
+--instr('asif.dafedar@gmail.com','.',1,2)-instr('asif.dafedar@gmail.com','@')-1) 
+--s_provd from dual;
+--select substr ('asif.dafedar@gmail.com',instr('asif.dafedar@gmail.com','.',1,2)+1)
+--domain from dual;
+--commit;
+--
+--select * from emp1; 
+--select m.ename as mgr_name,count(*)as tot_employees 
+--from emp1 e inner join emp1 m
+--on m.empno=e.mgr
+--group by m.ename;
+--
+--m--aliyas name for mgr row
+--e--aliyas name for emp rew
+--group by (m.ename)--group the employees under each manager 
+--after grouping, count(*) count the tot employees
+-------
+--select max(sal) from emp;---max sal--
+--select max (sal)from emp where sal<(select max(sal)from emp);----2nd max sal--
+--
+--select deptno, count(*)----dept count--
+--from emp
+--group by deptno;
+--select deptno,count(*) ---more then dept count--
+--from emp
+--group by deptno
+--having count(*)>5;
+-- select e.ename,d.dname ----dept wise emp name
+-- from emp e join dept d
+-- on e.deptno=d.deptno;
+--commit;
+-----'anand.samboji@gmail.com'---
+--select substr('anand.samboji@gmail.com',1,instr('anand.samboji@gmail.com','.')-1) f_name,
+--substr('anand.samboji@gmail.com',instr('anand.samboji@gmail.com','.',1,1)+1,
+--instr('anand.samboji@gmail.com','@')-instr('anand.samboji@gmail.com','.')-1) l_name,
+--substr('anand.samboji@gmail.com',instr('anand.samboji@gmail.com','@')+1,
+--instr('anand.samboji@gmail.com','.',1,2)-instr('anand.samboji@gmail.com','@')-1)s_pro,
+--substr('anand.samboji@gmail.com',instr('anand.samboji@gmail.com','.',1,2)+1) domain from dual;
+--commit;
+-------'786,786.786'---
+--select substr('786,786.786',1,instr('786,786.786',',')-1) F_n,
+--substr('786,786.786',instr('786,786.786',',')+1,
+--instr('786,786.786','.')-instr('786,786.786',',')-1) M_N,
+--substr('786,786.786',instr('786,786.786','.')+1) L_N from dual;
+--commit;
+------'AB CD EF'----
+--select substr('AB CD EF',1,instr('AB CD EF',' ')-1) A_B,
+--substr('AB CD EF',instr('AB CD EF',' ',1,1)+1,
+--instr('AB CD EF',' ',1,2)-instr('AB CD EF',' ')-1) B_C,
+--substr('AB CD EF',instr('AB CD EF',' ',1,2)+1) C_D from dual;
+--commit;
+-----'ANAND SURESH SAMBOJI'---
+--select substr('ANAND SURESH SAMBOJI',1,instr('ANAND SURESH SAMBOJI',' ',1,1)-1) F_N,
+--substr('ANAND SURESH SAMBOJI',instr('ANAND SURESH SAMBOJI',' ',1,1)+1,
+--instr('ANAND SURESH SAMBOJI',' ',1,2)-instr('ANAND SURESH SAMBOJI',' ')-1) M_N,
+--substr('ANAND SURESH SAMBOJI',instr('ANAND SURESH SAMBOJI',' ',1,2)+1) L_N from dual;
+--select * from dept;
+--select * from emp;
+--select e.ename,d.dname
+--from emp e join dept d
+--on e.deptno=d.deptno;
+--
+--select job, count(*)
+--from emp
+--group by job
+--having count(*)>1;
+--
+--select deptno,count(*)
+--from emp
+--group by deptno
+--having count(*)>2;
+--------'a b c'---
+--select substr('a b c',1,instr('a b c',' ')-1) a,
+--substr('a b c',instr('a b c',' ',1,1)+1,instr('a b c',' ',1,2)-instr('a b c',' ')-1)b,
+--substr('a b c',instr('a b c',' ',1,2)+1) c from dual;
+-------
+--select e.ename,d.dname
+--from emp e join dept d
+--on e.deptno=d.deptno;
+--select max(sal) from emp;
+--select max(sal) from emp where sal< (select max(sal) from emp);-- 2nd h_sal
+------dense_rank find nth sal ---
+--select * from (select emp.*,dense_rank() over(order by sal desc) as rank from emp) where rank='&n';
+--select e.*,d.*
+--from emp e,dept d
+--where e.deptno=d.deptno;
+-------
+--select deptno,count(*)
+--from emp
+--group by deptno;
+-----
+--select sal,count(*)
+--from emp1
+--group by sal
+--having count(*)>1
+--
+--
+----- to find dup---
+--select deptno, count(*)
+--from emp
+--group by deptno
+--having count(*)>1;
+-----
+--------'ab cd ed'--
+--select substr('ab cd ed',1,instr('ab cd ed',' ')-1) a_b,
+--substr('ab cd ed',instr('ab cd ed',' ',1,1)+1,
+--instr('ab cd ed',' ',1,2)-instr('ab cd ed',' ')-1) c_d,
+--substr('ab cd ed',instr('ab cd ed',' ',1,2)+1)e_d from dual;i
+-------
+--select * from emp1;
+--select sal,count(*)
+--from emp1
+--group by sal
+--having count(*)>1;
+--
+--select * from (select emp1.*,dense_rank() over(order by sal desc) as rank from emp1) where rank='3';
+-----------------------------joins--
+--select e.ename ,d.dname ----dept wise ename 
+--from emp1 e join dept d
+--on e.deptno=d.deptno;
+-------- sub query or nested query----
+--select * from emp1 a where (select count(distinct b.sal) from emp1 b where a.sal<=b.sal) in 3;
+--select * from emp1 where sal IN(select max(sal)from emp1);-----max sal with detail--
+--select (max(sal) from emp1;---IT WILL SHOWS ONLY MAX SAL---
+--select * from emp1 where sal in (select max(sal) from emp1);
+--select deptno, max(sal)  from emp1 group by deptno order by  max(sal)desc;
+--select * from (select emp1.*,dense_rank() over (partition by deptno order by sal desc)
+--as rank from emp1) where rank =2;
+--------------------msax sal---
+--select * from emp1;
+--select max(sal) from emp1; -----max sal only--
+--select * from emp1 where sal  in (select max(sal) from emp); -----max sal with all details
+--select max(sal) from emp1 where sal<(select max(sal) from emp1);----only 2nd max sal
+--select max (sal)from emp1 where sal not in (select max (sal)from emp1); ---- only 2nd max sal
+--select * from emp1 a where (select count(distinct b.sal) from emp1 b 
+--where a.sal<=b.sal) in 1;---- 12,3,4,5 Nth sal with detail---
+--select * from emp1 a where (select count (distinct b.sal) from emp1 b where a.sal<=b.sal)in 2;
+--select deptno, max(sal)  from emp1 group by deptno order by  max(sal)desc;---dept wise max sal
+-------
+--select max(sal)from emp1;
+----find the employee detail who is getting highest sal form emp table--
+--select* from emp1 where sal in (select max(sal) from emp1);
+----find  the employee detail who getting 2nd max sal from emp--
+--select max(sal) from emp where sal < (select max(sal) from emp);
+--select * from emp1 a where (select count(distinct b.sal) from emp1 b where a.sal<=b.sal) in 2;
+------
+----------'asif.dafedar@gmail.com'-----
+--select substr('asif.dafedar@gmail.com',1,instr('asif.dafedar@gmail.com','.')-1) F_N,
+--substr('asif.dafedar@gmail.com',instr('asif.dafedar@gmail.com','.',1,1)+1,
+--instr('asif.dafedar@gmail.com','@')-instr('asif.dafedar@gmail.com','.')-1) L_N,
+--substr('asif.dafedar@gmail.com',instr('asif.dafedar@gmail.com','@')+1,
+--instr('asif.dafedar@gmail.com','.',1,2)-instr('asif.dafedar@gmail.com','@')-1)S_PRDR,
+--substr('asif.dafedar@gmail.com',instr('asif.dafedar@gmail.com','.',1,2)+1) domain from dual;
+------'asif.dafedar@gmail.com'---F_N  L_N  domain---
+--select substr('asif.dafedar@gmail.com',1,instr('asif.dafedar@gmail.com','.')-1) F_N,
+--substr ('asif.dafedar@gmail.com',instr('asif.dafedar@gmail.com','.')+1,
+--instr('asif.dafedar@gmail.com','@')-instr('asif.dafedar@gmail.com','.')-1) L_N,
+--substr('asif.dafedar@gmail.com',instr('asif.dafedar@gmail.com','.',1,2)+1) domain from dual;
+-------
+------'1,2.3'--
+--select substr('1,2.3',1,instr('1,2.3',',')-1) F_NU,
+--substr('1,2.3',instr('1,2.3',',')+1,instr('1,2.3','.')-instr('1,2.3',',')-1) M_NU,
+--substr('1,2.3',instr('1,2.3','.')+1) L_NU from dual;
+------'faizan tousif dafedar'----
+--select substr('faizan tousif dafedar',1,instr('faizan tousif dafedar',' ')-1) NAME,
+--substr('faizan tousif dafedar',instr('faizan tousif dafedar',' ',1,1)+1,
+--instr('faizan tousif dafedar',' ',1,2)-instr('faizan tousif dafedar',' ')-1) F_NAME,
+--substr('faizan tousif dafedar',instr('faizan tousif dafedar',' ',1,2)+1) S_NAME from dual;
+--------
+--select * from emp1 a where(select count(distinct(b.sal)) from emp1 b where a.sal<=b.sal) in 2;
+--select * from (select emp1.*,dense_rank() over(partition by deptno 
+--order by sal desc) 
+--as rank from emp1) where rank=2;
+-------
+--select e.ename ,d.dname
+--from emp1 e join dept d
+--on e.deptno=d.deptno;
+----
+--select * from emp1;
+--select job,count(*)
+--from emp1
+--group by job
+--having count(*)>1;
+--update emp1 set sal=800 where ename='SMITH';
+--COMMIT;
+--
+--select deptno,max(sal)from emp1 group by deptno order by max(sal) desc;
+--select* from (select emp1.*, dense_rank() over(order by sal desc) 
+--as rank from emp1) where rank=2;
+--select  * from (select emp1.*,row_number() over (order by sal desc) 
+--as recrd from emp1) where recrd=1;
+--select * from emp1;
+--select * from (select empno,ename,deptno, row_number() over 
+--(partition by ename,deptno order by sal) as row_num from emp1)t where row_num>1;
+--
+--select e.ename ,d.dname
+--from emp e join dept d 
+--on e.deptno=d.deptno;
+--
+--select e.ename ,d.dname
+--from emp e join dept d
+--on e.deptno=d.deptno;
+--
+--select max(sal)from emp1 where sal< (select max(sal)from emp1); ---2nd max sal
+-- select * from emp1 a where( select count( distinct(b.sal)) 
+-- from emp1 b where a.sal<=b.sal) in 2;-- employee details who getting nth sal--  
+--select empno,count(*)
+--from emp1
+--group by empno
+--having count(*)>1;
+-----
+--select e.*,d.*
+--from emp1 e join dept d
+--on e.deptno=d.deptno;
+--------
+-- select emp1.*,dept.*
+-- from emp1 join dept
+-- on emp1.deptno=dept.deptno;
+-- 
+-- select substr(empno ,1,2)||'**' msk from emp1;------ data masking-----
+-- 
+--select * from salgrade1;
+--select * from emp1 where sal in (select max(sal) from emp1);
+--select max(sal) from emp1 where sal< (select max(sal) from emp1);
+--select * from emp1 a where (select count(distinct (b.sal)) from emp1 b where a.sal<=b.sal) in 3;
+--select * from emp1;
+-------
+--
+--create table college (reg_no NUMBER (5),stname  varchar2 (15),loc VARCHAR2 (15),city VARCHAR2 (15),
+--email VARCHAR2(20)) ;  
+--select * from college;
+--INSERT into college values ('001', 'rahul','chikodi','athani' );
+--INSERT into college values ('002','anand','gadhingalj',' sankeshwar');
+--INSERT into college values ('003','asif','mudhol_road','jamkhandi');
+--INSERT into college values ('004','vinayak','ganesh_n','athani');
+--INSERT into college values ('005','kajal','ramnagar','nippani');
+--alter table college drop(email);
+--commit;
+-- select * from emp;
+-- -------Pseudo column-------
+--select emp.*,rownum from emp ;
+--select emp.*,rowid from emp ;
+--select * from emp where rownum<=5;
+----HOW TO FIND DUPLICATE RECORDS---
+--select * from emp a where a.rowid>(select min(b.rowid) from emp b where a.sal=b.sal);
+-----HOW TO DELETE DUPLICATE RECORDS---
+--delete from emp a where a.rowid>(select min(b.rowid) from emp b where a.sal=b.sal);
+-----HOW TO DISPLAY ORIGINAL RECORDS--
+--select * from emp a where a.rowid=(select min(b.rowid) from emp b where a.sal=b.sal);
+----------------------------------------------------------
+--select * from emp where sal in (select max(sal) from emp); --emp detail highest sal--
+--select max(sal) from emp where sal<(select max(sal) from emp);-- 2nd hght sal--
+--select * from emp a where (select count(distinct(b.sal))from emp b
+--where a.sal<=b.sal) in 2;---- emp detail with 2nd hght sal---
+-- select emp.*,rowid from emp;
+-- select emp.*,rownum from emp;
+--select from emp a where a.rowid>(select min(b.rowid) from emp b  
+--where a.hiredate=b.hiredate);
+--select * from emp;
+--rollback;
+--select * from emp a where rowid>(select min(rowid) from emp b where a.MGR=b.MGR);
+--select * from emp a where rowid in (select min(rowid) from emp b where a.comm=b.comm);
+--rollback;
+--commit;
+--
+------'asif.dafedar@gmail.com'---f_name L_name S_prdr Domain--
+--select substr('asif.dafedar@gmail.com',1,instr('asif.dafedar@gmail.com','.')-1) F_name,
+--substr('asif.dafedar@gmail.com',instr('asif.dafedar@gmail.com','.',1,1)+1,
+--instr('asif.dafedar@gmail.com','@')-instr('asif.dafedar@gmail.com','.')-1) l_name,
+--substr('asif.dafedar@gmail.com',instr('asif.dafedar@gmail.com','@')+1,
+--instr('asif.dafedar@gmail.com','.',1,2)-instr('asif.dafedar@gmail.com','@')-1) S_prdr,
+--substr('asif.dafedar@gmail.com',instr('asif.dafedar@gmail.com','.',1,2)+1)
+--domain from dual;
+--
+--select * from emp a where rowid>(select min(rowid) from emp b where a.job=b.job);
+--select * from emp a where rowid>(select min(rowid) from emp b where a.empno=b.empno);
+--rollback;
+--select * from emp;
+--
+--create table lead_demo ( x varchar2(2));
+--
+--select * from lead_demo;
+--insert into lead_demo values(1);
+--insert into lead_demo values(2);
+--insert into lead_demo values(3);
+--insert into lead_demo values(4);
+--insert into lead_demo values(8);
+--
+--select * from (select (lead(x) over (order by x asc)-x ) 
+--rr from lead_demo)where rr =1;
+--select max (sal) from emp;
+--select * from emp  where sal in (select max(sal) from emp );
+--select max(sal)from emp where sal<(select max(sal) from emp); 2nd max sal;
+--select * from emp a where (select count(distinct(b.sal)) from emp b 
+--where a.sal<=b.sal) in 2;
+--select * from emp where sal in (select max(sal) from emp); 
+--select * from emp a where (select count(distinct(b.sal)) from emp b 
+--where a.sal<=b.sal) in 3;
+------how to find dup
+--select * from emp a where a.rowid>(select min(b.rowid) from emp b where a.sal=b.sal);
+-----how to find og-- 
+--select * from emp a where a.rowid=(select min(b.rowid) from emp b where a.sal=b.sal);
+-----how del dup---
+-----delete from emp a where a.rowid>(select min(b.rowid) from emp b where a.sal=b.sal);
+--rollback;
+--select * from emp;
+--select substr(job,1,3)||'*****' from emp;
+--select lpad('asifahmed',12,'*') from dual;
+--select * from dept;
+--select * from emp;
+--
+--select e.ename ,d.dname
+--from emp e join dept d
+--on e.deptno=d.deptno;
+--
+--select e.*,d.*
+--from emp e join dept d
+--ON e.deptno=d.deptno;
+--select * from dept;
+--alter table dept rename column dept to deptno;
+--
+--select * from(select emp.*,dense_rank() over(order by sal desc) as rnk from emp) where rnk=2;
+--select * from (select emp.*,dense_rank() over(partition by deptno order by sal desc) as rnk from emp)
+--where rnk=2;
+--select max(sal) from emp;
+--select max(sal)from emp where sal<(select max(sal) from emp);
+--select * from emp where sal in(select max(sal) from emp);
+--select * from emp a where (select count(distinct(b.sal)) from emp b where a.sal<=b.sal) =3;
+--select emp.*, rowid from emp;
+--select emp.*,rownum from emp;
+----- dup--
+--select * from emp a where a.rowid>(select min(b.rowid) from emp b where a.sal=b.sal);
+------OG--
+--select * from emp a where a.rowid=(select min(b.rowid) from emp b where a.sal=b.sal);
+-----fF DUP--
+--select cn,count(*)
+--from tn
+--group by cn
+--having count(*)>1;
+-------
+--delete from emp a where a.rowid>(select  min(b.rowid) from emp b where a.sal=b.sal);
+--rollback;
+--select * from emp;
+--
+--select deptno, max(sal) max_sal from emp group by deptno order by max(sal) desc;
+--select round(months_between(sysdate,'25-05-1993')/12) age from dual;
+--------SUB QUERRY---
+--select max(sal) from emp;
+--select * from emp where sal in (select max(sal) from emp);
+-------
+--select max(sal) from emp where sal<(select max(sal) from emp);----SUB QUERRY
+--select * from emp a where (select count(distinct(b.sal)) from emp b where a.sal<=b.sal) in 2;--CO-REL QUERRY
+--------INLINE SUB QUERRY--
+--select emp.*,rank() over(order by sal desc) rnk from emp;--- rank()
+--select emp.*,dense_rank() over (order by sal desc) rr from emp;----dense_rank()
+--select emp.*,row_number() over (order by sal desc)rnmbr from emp;-- row_number()
+--select emp.*, dense_rank() over(partition by deptno order by sal) drnk from emp;
+--select * from ( select emp.*, dense_rank() over (order by sal desc) rnk from emp) where rnk=1;
+--select * from (select emp.*,dense_rank() over( partition by deptno order by sal desc) drnk  from emp)
+--where drnk=1;
+--select * from (select emp.*,dense_rank() over( partition by JOB order by sal desc) drnk  from emp)
+--where drnk=1;
+--select * from (select emp.*, dense_rank() over (order by sal desc) rr from emp) where 
+--rr=(select count(distinct(sal)) from emp);---lwst sal
+--select * from (select emp.*,dense_rank() over(order by sal desc) rr from emp) where rr<=5;
+--select * from (select emp.*,dense_rank() over(order by sal desc) rr from emp) where rr>=5;
+------
+--------'ASIF.DAFEDAR@GMAIM.COM'----FF-NAME L_NAME S_PRDR DOMAIM---
+--select substr('ASIF.DAFEDAR@GMAIM.COM',1,instr('ASIF.DAFEDAR@GMAIM.COM','.')-1) F_name,
+--substr('ASIF.DAFEDAR@GMAIM.COM',instr('ASIF.DAFEDAR@GMAIM.COM','.',1,1)+1,
+--instr('ASIF.DAFEDAR@GMAIM.COM','@')-instr('ASIF.DAFEDAR@GMAIM.COM','.')-1)L_name,
+--substr('ASIF.DAFEDAR@GMAIM.COM',instr('ASIF.DAFEDAR@GMAIM.COM','@')+1,
+--instr('ASIF.DAFEDAR@GMAIM.COM','.',1,2)-instr('ASIF.DAFEDAR@GMAIM.COM','@')-1) S_prdr,
+--substr('ASIF.DAFEDAR@GMAIM.COM',instr('ASIF.DAFEDAR@GMAIM.COM','.',1,2)+1) domain from dual;
+--
+--select * from  emp;
+--select * from  dept;
+-- --------'aa bb cc'---
+--
+--select substr('aa bb cc',1,instr('aa bb cc',' ')-1) a_a,
+--substr('aa bb cc',instr('aa bb cc',' ',1,1)+1,instr('aa bb cc',' ',1,2)-instr('aa bb cc',' ')-1) b_b,
+--substr('aa bb cc',instr('aa bb cc',' ',1,2)+1)c_c from dual;
+--select job,count(job)
+--from emp
+--group by job
+--having count(job)>1;
+--
+--select sal,count(*)
+--from emp
+--group by sal
+--having count(*)>1;
+--select * from emp a where a.rowid>(select min(b.rowid) from emp b where a.sal=b.sal);
+--select * from emp a where a.rowid=(select min(b.rowid) from emp b where a.sal=b.sal);
+-----delete from emp a where a.rowid>(select min(b.rowid) from emp b where a.sal=b.sal);
+--select * from emp;
+-----rollback;
+--select * from emp;
+--select * from dept;
+--select e.ename ,d.dname
+--from emp e join dept d
+--on e.deptno=d.deptno;
+--select e.ename,d.loc
+--from emp e join dept d
+--on e.deptno=d.deptno;
+---------FINDING OG AND DUP RECORDS----
+--select sal from emp where sal in (select sal from emp group by sal having(sal)>1);
+--select * from emp where sal in (select sal from emp group by sal having(sal)>1);
+--select * from emp;
+--select instr('asif dafedar','a',8) inst from dual;
+--select max (sal )from emp;--- hght sal 
+--select * from emp where sal in(select max(sal)from emp); ---- emplye dtail 2nd hght sal
+--select max(sal) from emp where sal <(select max(sal) from emp); ----2nd hght sal
+--select * from emp a where (select count(distinct(b.sal)) from emp b where a.sal<=b.sal) in 2;--- 2nd E detail 
+-------
+--select * from emp a where a.rowid>(select min(b.rowid) from emp b where a.sal=b.sal);---dup rcrds
+--select * from emp a where a.rowid=(select min(b.rowid) from emp b where a.sal=b.sal);
+--delete from emp a where a.rowid=(select min(b.rowid) from emp b where a.sal=b.sal);
+--rollback;
+--select * from emp;
+--select emp.*,dense_rank() over(order by sal desc) rr from emp; 
+--select * from (select emp.*, dense_rank() over(order by sal desc) rr from emp) where rr=2;----Nth rank
+--select * from (select emp.*,dense_rank() over(partition by mgr order by sal desc) rr from emp)
+--where rr=1;
+-------last rank---
+--select * from (select emp.*, dense_rank() over (order by sal desc) rr from emp) where
+--rr=(select count(distinct(sal)) from emp);
+------first record or Nth record----
+--select * from (select emp.*,row_number() over(order by rowid) rr from emp) where rr=1;---- findingNth record 
+--select * from emp;
+--select * from emp where rownum=1;----first rcrd
+-------OR---
+--select * from emp where rowid in ( select min(rowid) from emp);--- first rcrd
+-------
+--select * from (select emp.*,dense_rank() over(order by rowid)rr from emp) where rr=3;
+--select * from (select emp.*,row_number() over(order by rowid)rr from emp) where rr=3;
+--select * from (select emp.*,row_number() over(order by rowid)rr from emp) where rr<=5;--top 5 rcrds
+--select * from (select emp.*,row_number() over(order by rowid)rr from emp) where rr<5;top 4 rcrds
+-----midle records---OR TO 50% RECORDS
+--select * from (select emp.*,row_number() over (order by rowid)rr from emp) 
+--where rr<=(select count(*)/2 from emp);
+-------OR---
+--select * from (select emp.*,row_number() over (order by rowid) rr from emp)
+--where rr<=(select round(count(*)*0.5) from emp);
+-------TOP 30% RECORDS-----
+--select * from (select emp.*,row_number() over (order by rowid) rr from emp)
+--where rr<=(select round(count(*)*0.3) from emp);
+--------------last 25%-----
+--select * from (select emp.*,row_number() over (order by rowid) rr from emp)
+--where rr<=(select round(count(*)*0.75) from emp);
+--select * from (select emp.*,row_number() over (order by rowid) rr from emp) where rr<=(select count(*)/2 from emp);
+--select * from (select emp.*,row_number() over (order by rowid) rr from emp) where rr<=(select round(count(*)*0.5) from emp);
+--select * from (select emp.*,row_number() over (order by rowid) rr from emp) where rr<=(select (count(*)*0.5) from emp);
+--select * from (select emp.*,row_number() over (order by rowid) rr from emp) where rr<=(select round(count(*)*0.3) from emp);
+------first record--
+--select * from emp where rowid in (select min(rowid) from emp);
+-------OR---
+--select * from (select emp.*, row_number() over (order by rowid) rr from emp) where rr=1;--nth rcrd--
+-------Last rcrd----
+--select * from emp where rowid in(select max(rowid) from emp);
+-------OR---
+--select * from(select emp.*,row_number() over(order by rowid) rr from emp) where rr=(select count(*) from emp);
+--select round(months_between(sysdate,'25-05-1993')/12) age from dual;
+--
+--
+-- CREATE TABLE newemp (
+--    EmployeeID NUMBER(10),
+--    FirstName VARCHAR2(50),
+--    LastName VARCHAR2(50),
+--    Email VARCHAR2(100),
+--    PhoneNumber VARCHAR2(20),
+--    HireDate DATE,
+--    JobTitle VARCHAR2(50),
+--    Salary NUMBER(10, 2),
+--    DepartmentID NUMBER(5));---
+--    select * from newemp;
+--    --------
+--INSERT INTO newemp  VALUES 
+--(7861, 'Alice', 'Smith', 'alice.smith@example.com', '5551234', to_date('15-01-2020','dd-mm-yyyy'), 'Software Engineer', 75000, 101);
+--INSERT INTO newemp  VALUES 
+--(7862, 'Bob', 'Johnson', 'bob.johnson@example.com', '555678', to_date('20-03-2018','dd-mm-yyyy'), 'Project Manager', 90000, 102);
+--INSERT INTO newemp  VALUES 
+--(7863, 'Charlie', 'Brown', 'charlie.brown@example.com','5559012', to_date('01-07-2021','dd-mm-yyyy'), 'Data Analyst', 60000, 101);
+--INSERT INTO newemp  VALUES 
+--(7864, 'Diana', 'Miller', 'diana.miller@example.com', '5553456', to_date('11-10-2019','dd-mm-yyyy'), 'HR Specialist', 65000, 103);
+--INSERT INTO newemp  VALUES 
+--(7865, 'Eve', 'Davis', 'eve.davis@example.com', '5557890', to_date('25-04-2022','dd-mm-yyyy'),'Marketing Coordinator', 50000, 104);
+--commit;---
+------drop table employee;
+--
+---select * from emp;
+---select * from newemp where substr(firstname,1,2)='Bo';
+--select * from emp where substr(ename,1,3)='o';
+---select firstname from newemp where firstname like '_o%';
+---select ename from emp where ename like '_O%';
+---delete from emp a where a.rowid >(select min(b.rowid) from emp b where a.empno=b.empno);
+--create user Asifdafedar IDENTIFIED BY system;
+--grant all PRIVILEGES to  Asifdafedar;
+--grant dba to  Asifdafedar;
+
+--select * from emp where rowid in (select min(rowid) from emp);--- min rcrd
+--select * from emp where rowid in (select max(rowid) from emp);---max rcrd
+--select * from (select emp.*,row_number() over (order by rowid) nth_rcrd from emp) where nth_rcrd='&n';
+--select * from (select emp.*,row_number() over(order by rowid) rr from emp) where rr<=(select count(*)/2 from emp);
+--select * from (select emp.*,row_number() over(order by rowid) rr from emp) where 
+--rr>=(select round(count(*)*0.75) from emp);
+--select ename from  emp where ename like '__L%';
+
+--select substr(ename,1,3) as name from emp;
+--select substr(ename ,-3) as name from emp;
+--select * from emp where substr(ename,-1,1)='N';
+--
+--select sal from newemp where sal like '%3';
+--select * from  newemp;
+--select * from  emp;
+--select * from emp where rowid in (select min(rowid) from emp);
+--select * from emp where rowid in (select max(rowid) from emp);
+--select * from (select emp.*, row_number() over (order by rowid) rr from emp) where rr=2;
+--select * from (select emp.*,row_number() over(order by rowid) rr from emp )where rr<=(select count(*)/2 from emp);
+--select * from emp a where a.rowid>(select min(b.rowid) from emp b where a.sal=b.sal);
+--select * from emp a where a.rowid=(select min(b.rowid) from emp b where a.sal=b.sal); 
+--select * from emp where ename like '__A%';
+--select ename from emp where ename like 'A%';
+--select * from emp;
+--select max(sal)from emp; 
+--select * from emp where sal in (select max(sal)from emp);
+--select max(sal) from emp where sal<(select max(sal)from emp);
+--select * from emp a where ( select count(distinct(b.sal)) from emp b where a.sal<=b.sal) in 2;
+--select * from emp a where a.rowid>(select min(b.rowid) from emp b where a.sal=b.sal);------duplcate rcrds
+--select * from emp a where a.rowid=(select min(b.rowid) from emp b where a.sal=b.sal);
+---delete from emp a where a.rowid>(select min(b.rowid) from emp b where a.sal=b.sal);
+---rollback;
+--select * from emp where rowid in  (select min(rowid) from emp);
+--select * from emp where rowid in ( select max (rowid)from emp); 
+--select * from (select emp.*, row_number() over (order by rowid) rr from emp) where rr=2;
+--select * from (select emp.*, row_number() over (order by rowid) rr from emp) where rr<=(select count(*)/2 from emp);
+--select * from (select emp.*, row_number() over ( order by rowid) rr from emp) where rr>=(select round(count(*)*0.75)
+--from emp);
+--select * from (select emp.*, dense_rank() over(order by sal desc) as rr from emp) where rr=2;
+--select * from (select emp.*, dense_rank() over (partition by deptno order by sal desc)as rr from emp) where rr=1;
+
+--select * from emp;
+--
+--select max(sal) from emp where deptno=20;
+--select substr('sssacademy@gmail.in',instr('sssacademy@gmail.in','.',1,1)+1)as name from dual;
+-- 
+--create table student (sid number(5),name VARCHAR(20),marks number(3),result VARCHAR(10));
+--select * from student;
+--desc student;
+--insert into student values (1,'Anand',90,'P');
+--insert into student values (2,'Asif',92,'P');
+--insert into student values (3,'Santosh',95,'P');
+--insert into student values (4,'Paras',80,'P');
+--insert into student values (5,'Rahul',32,'F');
+--insert into student values (6,'Javed',34,'');
+--commit;
+
+--create table student1 (sid number(5),name VARCHAR(20),marks number(3),result VARCHAR(10));
+--insert into student1 values (1,'Anand',90,'P');
+--insert into student1 values (2,'Asif',95,'P');
+--insert into student1 values (2,'Asif',95,'P');
+--insert into student1 values (1,'Anand',90,'P');
+--insert into student1 values (5,'Rahul',32,'F');
+--insert into student1 values (6,'Javed',34,'');
+--insert into student1 values (7,'Uday',85,'P');
+--insert into student1 values (8,'Shiva',34,'');
+--insert into student1 values (9,'Ramesh',88,'P');
+--commit;
+--select sid,name,marks,result,decode(result,'P','Pass','F','Fail','No Data Found') as dcode from student;
+--select systimestamp from dual;
+--select rowid,rownum,sid,name,marks,result from student;
+---delete from student a where a.rowid>(select min(b.rowid) from student b where a.sid=b.sid);
+
+--select * from student
+--union
+--select * from student1;
+--
+--select * from student
+--union all
+--select * from student1;
+--
+--select * from student
+--intersect
+--select * from student1;
+--
+--select * from student
+--minus
+--select * from student1;
+--
+--select * from student1
+--minus
+--select * from student;
+-------
+--select * from student
+--minus
+--select * from student1
+--union
+--select * from student1
+--minus
+--select * from student;
+--
+--
+--select * from student;
+--desc student;
+--desc student1;
+
+--create table student_dup as select * from student;
+-----UNION----with minus
+--select * from student
+--minus
+--select * from student_dup
+--union 
+--select * from student_dup
+--minus
+--select * from student;
+----Max sal----
+--select max(sal) from emp;
+--select * from emp where sal in (select max(sal)from emp);
+------ OR nth sal
+--select * from emp a where (select count(distinct(b.sal)) from emp b where a.sal<=b.sal)in 3;
+------2Nd highest sal--
+--select * from emp where sal=(select max(sal) from emp where sal<(select max(sal) from emp));
+----min sal--
+--select min(sal) from emp;
+-----min sal with dtl---
+--select * from emp where sal in(select min(sal)from emp);
+----2nd min sal---
+--select * from emp where sal=(select min(sal)from emp where sal>(select min(sal) from emp));
+------nvl fun---
+--select coalesce(null,12,12) from dual;
+--select coalesce (null,null,null)  as coal from dual;
+--select nvl(null,'500') as nvl from dual; ---only single clm at time--
+--select nvl2 (notnull,null,'500','300')as nvl02 from dual;
+-----------------JOINS-------------
+--select * from student;
+--select * from student1;
+-------INNER J--COUNT=6
+-- select student.*,student1.*
+-- from student inner join student1
+-- on student.sid=student1.sid;
+-- 
+-- ------LEFT J---COUNT=8
+--  select student.*,student1.*
+-- from student left outer join student1
+-- on student.sid=student1.sid;
+-- ----RIGHT J---COUNT=9
+--  select student.*,student1.*
+-- from student RIGHT OUTER JOIN  student1
+-- on student.sid=student1.sid;
+-- ---FULL O J---COUNT 11
+--  select student.*,student1.*
+-- from student full outer join student1
+-- on student.sid=student1.sid;
+-- -----CROSS P J--COUNT=54
+--  select student.*,student1.*
+-- from student CROSS JOIN  student1;
+--select * from emp;
+--select * from (select emp.*, row_number() over (order by rowid)as rr from emp) where rr<=(select count(*)/2 from emp);
+--select * from (select emp.*,row_number() over (order by rowid)as rr from emp)where rr<=(select  round(count(*)*0.3)from emp);
+--select * from (select emp.*, dense_rank() over(order by sal desc) as rr from emp) where rr='&n';
+--select * from emp a where a.rowid>(select min(b.rowid) from emp b where a.sal=b.sal);
+--select * from emp a where a.rowid=(select min (b.rowid) from emp b where a.sal=b.sal);
+--select * from emp a where a.rowid>(select min(b.rowid) from emp b where a.job=b.job);
+--create table join_window (x number(5));
+--insert into join_window values (1);
+--insert into join_window values (1);
+--insert into join_window values (3);
+--insert into join_window values (4);
+--insert into join_window values (4);
+--insert into join_window values (5);
+--insert into join_window values (6);
+--insert into join_window values (8);
+--insert into join_window values (10);
+--commit;
+--select * from join_window;
+-- 
+--create table join_window2 (Y number(5));
+--insert into join_window2 values (1);
+--insert into join_window2 values (2);
+--insert into join_window2 values (3);
+--insert into join_window2 values (4);
+--insert into join_window2 values (5);
+--insert into join_window2 values (5);
+--insert into join_window2 values (6);
+--insert into join_window2 values (8);
+--insert into join_window2 values (10);
+--commit;
+--select * from join_window;
+--select * from join_window2;
+--------ANALYTICAL OR WINDOWS FUNCTIONS-----
+--alter table join_window2 rename column x to Y;
+--select join_window2.*, lead(y) over (order by y) ld from join_window2;
+--select join_window2.*,lag(y) over (order by y) lg from join_window2;
+--select join_window2.*,rank() over (order by y) rnk from join_window2;
+--select join_window2.*,dense_rank() over (order by y) drk from join_window2;
+--select join_window2.*, row_number() over (order by y) rnb from join_window2;
+-------JOINS-----
+-----cross--
+--select * from join_window;
+--select * from join_window2;
+--select join_window.*,join_window2.*
+--from join_window cross join join_window2;
+------inner--
+--select join_window.*,join_window2.*
+--from join_window inner join join_window2
+--on join_window.x=join_window2.y;
+-------left ---
+--select join_window.*,join_window2.*
+--from join_window left outer join join_window2
+--on join_window.x=join_window2.y;
+------right---
+--select join_window.*,join_window2.*
+--from join_window right outer join join_window2
+--on join_window.x=join_window2.y;
+------full o j----
+--select join_window.*,join_window2.*
+--from join_window full outer join join_window2
+--on join_window.x=join_window2.y;
+--select * from emp;
+
+--create table analytical_window (sal number(5));
+--insert into analytical_window values (100);
+--insert into analytical_window values (100);
+--insert into analytical_window values (300);
+--insert into analytical_window values (500);
+--insert into analytical_window values (200);
+--insert into analytical_window values (400);
+--insert into analytical_window values (600);
+--insert into analytical_window values (700);
+--insert into analytical_window values (800);
+--insert into analytical_window values (800);
+--insert into analytical_window values (700);
+--select * from analytical_window;
+--select analytical_window.*,rank() over (order by sal desc) rnk from analytical_window;
+--select analytical_window.*,dense_rank() over (order by sal desc) d_rk from analytical_window;
+--select analytical_window.*,row_number() over (order by sal desc) R_num from analytical_window;
+--select analytical_window.*,lead(sal) over (order by sal desc) Lead from analytical_window;
+--select analytical_window.*,lead(sal,2) over (order by sal desc) Lead from analytical_window;
+--select analytical_window.*, lag(sal) over (order by sal desc) lag from analytical_window;
+--select analytical_window.*, lag(sal,2) over (order by sal desc) lag from analytical_window;
+--select * from emp;
+------dup rcrd count---
+--select empno,count(empno)
+--from emp
+--group by empno
+--having count(*)>1;-----no data found--
+--select sal,count(sal)
+--from emp
+--group by sal
+--having count(sal)>1;
+-------  dup with detals---
+--select * from emp a where a.rowid>(select min(b.rowid) from emp b where a.sal=b.sal);
+-------deptwise max sal---
+--select deptno,max(sal) from emp group by deptno order by deptno asc;
+----- 
+--select * from (select emp.*,dense_rank() over (partition by deptno order by sal desc) rr from  emp);
+--select * from (select emp.*,dense_rank() over (partition by deptno order by sal desc) rr from  emp) where rr=1;
+--select * from emp a where a.rowid=(select min(b.rowid) from emp b where a.sal=b.sal);
+--select * from (select emp.*, row_number() over (order by rowid) rr from emp) where rr<=(select (count(*)*0.5) from emp);
+----'ETL,SQL,PYTHON'----
+--select substr('ETL,SQL,PYTHON',1,instr('ETL,SQL,PYTHON',',',1,1)-1) as etl,
+--substr('ETL,SQL,PYTHON',instr('ETL,SQL,PYTHON',',',1,1)+1,instr('ETL,SQL,PYTHON',',',1,2)-
+--instr('ETL,SQL,PYTHON',',')-1) as sql,
+--substr('ETL,SQL,PYTHON',instr('ETL,SQL,PYTHON',',',1,2)+1) as python from dual;
+--select substr(email_id,1,instr(email_id,'@')-1) as u_name,
+--substr(email_id,instr(email_id,'@')+1,instr(email_id,'.')-instr(email_id,'@')-1) as S_prdr,
+--substr(email_id,instr(email_id,'.')+1) as domain from TN;
+------
+-- select substr('ASIF.DAFEDAR@GMAIL.COM',1,INSTR('ASIF.DAFEDAR@GMAIL.COM','.')-1)F_name,
+-- substr('ASIF.DAFEDAR@GMAIL.COM',instr('ASIF.DAFEDAR@GMAIL.COM','.',1,1)+1,
+-- instr('ASIF.DAFEDAR@GMAIL.COM','@')-instr('ASIF.DAFEDAR@GMAIL.COM','.')-1) L_name,
+-- substr('ASIF.DAFEDAR@GMAIL.COM',instr('ASIF.DAFEDAR@GMAIL.COM','@')+1,instr('ASIF.DAFEDAR@GMAIL.COM','.',1,2)-
+-- instr('ASIF.DAFEDAR@GMAIL.COM','@')-1) S_prdr,
+-- substr('ASIF.DAFEDAR@GMAIL.COM',instr('ASIF.DAFEDAR@GMAIL.COM','.',1,2)+1) domain from dual;
+-- ----
+-- select substr('asif sultansha dafedar',1,instr('asif sultansha dafedar',' ',1,1)-1) Name,
+-- substr('asif sultansha dafedar',instr('asif sultansha dafedar',' ',1,1)+1,
+-- instr('asif sultansha dafedar',' ',1,2)-instr('asif sultansha dafedar',' ')-1) F_N,
+-- substr('asif sultansha dafedar',instr('asif sultansha dafedar',' ',1,2)+1) S_N from dual;
+--select * from emp;
+--select empno,count(empno)
+--from emp
+--group by empno
+--having count(empno)>1;
+--select deptno,count(deptno)
+--from emp
+--group by deptno
+--having count(deptno)>1;
+--select * from emp a where a.rowid> (select  min(b.rowid) from emp b where a.empno=b.empno);
+--select * from emp a where a.rowid=(select min(b.rowid) from emp b where a.deptno=b.deptno);
+--select *from emp a where a.rowid>(select min(b.rowid) from emp b where a.deptno=b.deptno);
+--
+--rollback;
+--select * from emp;
+--select distinct empno,ename,job,mgr from emp order by empno;
+--select * from (select emp.*,dense_rank() over (order by sal desc)rr from emp)where rr=2; 
+--select * from (select emp.*,row_number() over (order by ROWID desc)rr from emp)where rr<=(select round(
+--count(*)*0.75) from emp);
+--select * from emp a where a.rowid in (select min(b.rowid) from emp b where a.empno=b.empno);
+--select sysdate+1 from dual;
+--select 23*2 as mult,23+2 as adnn,23-2 as subst,round(20/3) as dvd from dual;
+--select 'IM Learning Python' as   from dual;
+-----'Asif.dafedar@gmail.com'--
+--select substr(email,1,instr(email,'.')-1) as f_asif,
+--substr(email,instr(email,'.',1,1)+1,instr(email,'@',1,2)-instr(email,'.')-1) as L_dafedar,
+--substr(email,instr(email,'@')+1,instr(email,'.',1,2)-instr(email,'@')-1)as S_prdr,
+--substr(email,instr(email,'.',1,2)+1) as domain from tn;
+--
+--select substr('Asif.dafedar@gmail.com',1,instr('Asif.dafedar@gmail.com','.')-1) as f_asif,
+--substr('Asif.dafedar@gmail.com',instr('Asif.dafedar@gmail.com','.',1,1)+1,
+--instr('Asif.dafedar@gmail.com','@')-instr('Asif.dafedar@gmail.com','.')-1) as L_dafedar,
+--substr('Asif.dafedar@gmail.com',instr('Asif.dafedar@gmail.com','@')+1,
+--instr('Asif.dafedar@gmail.com','.',1,2)-instr('Asif.dafedar@gmail.com','@')-1)as S_prdr,
+--substr('Asif.dafedar@gmail.com',instr('Asif.dafedar@gmail.com','.',1,2)+1) as domain from dual;
+--CONCATENATION
+--select ename||job from emp;
+-----COMPARISION OPERATORS
+--select * from emp where deptno=10;
+--select * from emp where deptno>10;
+--select * from emp where deptno>=10;
+--select * from emp where deptno<30;
+--select * from emp where deptno<=10;
+--select * from emp where deptno<>10;
+----LOGICAL OPERATORS
+--select * from emp where deptno in(10,30);
+--select * from emp where deptno not in(10,20);
+--select * from emp where hiredate between '20-2-81' and '09-06-81';
+----LIKE OPERATOR
+--select * from emp where deptno like '10';
+--select * from emp where ename like'%A' --start
+--or ename like 'M%';
+--select * from emp where ename like '____';
+--select * from emp where ename like '%A%';
+--select * from emp where ename like '%S'; ---end
+--select * from emp where ename not like '%S';
+--select * from emp where ename not like '%ER';
+--select * from emp where deptno=20  and ename like 'A%' and sal>1000; -- COND1 AND COND2 or  MULTIPLE WILL SATISFY
+--select * from emp where deptno=20  or ename like 'K%';---- ANY ONE COND1 WILL SATISFY
+--select * from emp where (deptno=20 or ename like 'K%')  and sal>2000; 
+--select * from emp where (deptno=20 or ename like 'K%')  or sal>2000;
+--COMMIT;
+------SET OPERATORS
+--select * from emp;
+--select * from dept;
+--select empno,ename from emp
+--Union
+--select deptno,dname from dept;
+--
+--select empno,ename from emp
+--Union all
+--select deptno,dname from dept;
+--
+--select empno,ename from emp
+--intersect
+--select deptno,dname from dept;
+--
+--select empno,ename from emp
+--MINUS
+--select deptno,dname from dept;
+--
+--select deptno,dname from dept
+--MINUS
+--select empno,ename from emp;
+--
+--create table t1 (id number(5),name VARCHAR2(5));
+--insert into t1 values (1,'A');
+--insert into t1 values (1,'A');
+--insert into t1 values (2,'B');
+--insert into t1 values (3,'C');
+--insert into t1 values (4,'D');
+--insert into t1 values (5,'E');
+--insert into t1 values (6,'F');
+--insert into t1 values (7,'');
+--
+--
+--
+--create table t2(id number(5),name VARCHAR2(5));
+--insert into t2 values (1,'A');
+--insert into t2 values (2,'B');
+--insert into t2 values (3,'C');
+--insert into t2 values (6,'F');
+--insert into t2 values (7,'H');
+--insert into t2 values (8,'I');
+--insert into t2 values (9,'J');
+--insert into t2 values (10,'');
+--commit;
+--
+--select * from t1;--8records
+--select * from t2;--8 records
+--
+--select * from t1 ------8records
+--union
+--select * from t2;------8 records count =11
+--
+--select * from t1 ------8 records
+--union all
+--select * from t2;------8 records count=16
+--
+--select * from t1 ------8records  count=4
+--intersect
+--select * from t2;------8records null=null thats why didnt retrieve the 'null'
+--
+--select * from t1 ------8records
+--minus
+--select * from t2; ------8records count=3
+--
+--select * from t2 ------8records
+--minus
+--select * from t1; ------8records count=4
+
+----JIONS--
+--select * from emp;
+--select * from dept;
+--
+--select * 
+--from emp inner join dept
+--on emp.deptno=dept.deptno;
+------or--
+--select * 
+--from emp e inner join dept d
+--on e.deptno=d.deptno;
+----or displays emp rcrds only
+--select emp.* 
+--from emp inner join dept
+--on emp.deptno=dept.deptno; 
+------or displays dept rcrds only
+--select dept.* 
+--from emp inner join dept
+--on emp.deptno=dept.deptno; 
+-----displays unk rcrds
+--select distinct emp.* 
+--from emp inner join dept
+--on emp.deptno=dept.deptno;
+--
+--select distinct  dept.* 
+--from emp inner join dept
+--on emp.deptno=dept.deptno;
+--
+--select  e.empno,e.ename,e.sal,e.deptno,d.deptno,d.dname,d.loc
+--from emp e join dept d
+--on e.deptno=d.deptno;
+--
+--select * from t1;--8records
+--select * from t2;--8 records
+--
+--select * from t1 a inner join t2 b on a.id=b.id;
+--select a.name,b.name from t1 a inner join t2 b on a.name=b.name; 
+--
+--select * from t1 a left join t2 b on a.id=b.id; 
+--select a.name,b.name from t1 a left join t2 b on a.name=b.name;
+--
+--select * from t1 a left join t2 b on a.id=b.id; 
+--select a.name,b.name from t1 a right join t2 b on a.name=b.name;
+--
+--select a.name,b.name from t1 a FULL OUTER JOIN t2 b on a.name=b.name;
+--
+--select * from t1,t2 where t1.id=t2.id ;---join
+--select * from t1,t2 where t1.id<>t2.id ;--non equi join
+--
+--select distinct e.ename,d.dname
+--from emp e join dept d
+--on e.deptno=d.deptno;
+--create table emp_str as select * from emp where 100=100;--WHEN WHERE COND TRUE THAN WE CAN RETRIEVE TABLE WITH RECORDS
+--create table emp_str as select * from emp where 100=2;--- WHEN WHERE COND FALSE THAN WE CAN RETRIEVE ONLY TABLE STR
+--insert into emp_str select * from emp;-- INSERTING THE VALUES INTO EMPTY TABLE-STRUCTURE
+--select * from emp_str;
+----AGGREGATE FUN--
+--select deptno,sum(sal),min(sal),max(sal),round(avg(sal)),count(empno) from emp group by deptno ;
+--select count(*),count(comm) from emp;
+--select count(1),count(comm) from emp;
+--select job,count(job)
+--from emp
+--group by job
+--having count(*)>1;
+--select job,count(1)
+--from emp
+--group by job
+--having count(1)>1;
+
+select round(295.3455) from dual; ---o/p 295
+select round(50.3455,1) from dual; ---o/p 295.3
+select round(50.3455,2) from dual; ---o/p 295.35 round
+select trunc(295.3455) from dual;--o/p 295
+select trunc(295.3455,2) from dual; ---o/p 295.34 'no round'
+select trunc(295.3455,-1) from dual; ---o/p 290---------'-1'=0,'-2'=00,'-3'=000
+select trunc(295.3455,-2) from dual; ---o/p 200
+select trunc(295.3455,-3) from dual; ---o/p 0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+ 
+
+
