@@ -835,7 +835,7 @@
 --select substr('sssacademy@gmail.in',instr('sssacademy@gmail.in','.',1,1)+1)as name from dual;
 -- 
 --create table student (sid number(5),name VARCHAR(20),marks number(3),result VARCHAR(10));
---select * from student;
+select * from student1;
 --desc student;
 --insert into student values (1,'Anand',90,'P');
 --insert into student values (2,'Asif',92,'P');
@@ -844,7 +844,7 @@
 --insert into student values (5,'Rahul',32,'F');
 --insert into student values (6,'Javed',34,'');
 --commit;
-
+insert into student1 values (null,'ram',50,'p');
 --create table student1 (sid number(5),name VARCHAR(20),marks number(3),result VARCHAR(10));
 --insert into student1 values (1,'Anand',90,'P');
 --insert into student1 values (2,'Asif',95,'P');
@@ -888,7 +888,7 @@
 --select * from student1
 --minus
 --select * from student;
---
+
 --
 --select * from student;
 --desc student;
@@ -1266,49 +1266,209 @@
 --from emp
 --group by job
 --having count(1)>1;
+--
+--select round(295.3455) from dual; ---o/p 295
+--select round(50.3455,1) from dual; ---o/p 295.3
+--select round(50.3455,2) from dual; ---o/p 295.35 round
+--select trunc(295.3455) from dual;--o/p 295
+--select trunc(295.3455,2) from dual; ---o/p 295.34 'no round'
+--select trunc(295.3455,-1) from dual; ---o/p 290---------'-1'=0,'-2'=00,'-3'=000
+--select trunc(295.3455,-2) from dual; ---o/p 200
+--select trunc(295.3455,-3) from dual; ---o/p 0
 
-select round(295.3455) from dual; ---o/p 295
-select round(50.3455,1) from dual; ---o/p 295.3
-select round(50.3455,2) from dual; ---o/p 295.35 round
-select trunc(295.3455) from dual;--o/p 295
-select trunc(295.3455,2) from dual; ---o/p 295.34 'no round'
-select trunc(295.3455,-1) from dual; ---o/p 290---------'-1'=0,'-2'=00,'-3'=000
-select trunc(295.3455,-2) from dual; ---o/p 200
-select trunc(295.3455,-3) from dual; ---o/p 0
+--select empno,ename,sal,comm,nvl(comm,100)as nul,nvl2(comm,1000,2000)as notnull_and_null from emp;
+--select empno,ename,sal,comm,nvl(comm,100) as nul from emp;
+--select empno,ename,sal,comm,nvl2(comm,1000,2000) as notnull_and_null from emp;
+--select comm,nvl(comm,1000) from emp;
+--select comm,nvl2(comm,1000,2000)  as notnull_and_null from emp;
+--select 400+nvl(null,0) from dual;
+--select deptno,max(sal) from emp group by deptno;
+--select deptno,max(sal) from emp group by deptno order by deptno desc;
+--select deptno,max(sal) from emp group by deptno  having sum(sal)>=100 order by deptno desc;
+
+---'Asif@gmail.com' Requirment is -->  asif gmail com
+--select substr('Asif@gmail.com',1,instr('Asif@gmail.com','@')-1) as user_name,
+--substr('Asif@gmail.com',instr('Asif@gmail.com','@')+1,instr('Asif@gmail.com','.')-instr('Asif@gmail.com','@')-1)
+--as gmail,substr('Asif@gmail.com',instr('Asif@gmail.com','.')+1)as com from dual;
+-----OR---
+--select substr(email,1,instr(email,'@')-1) as user_name,
+--substr(email,instr(email,'@')+1,instr(email,'.')-instr(email,'@')-1) as gmail,
+--substr(email,instr(email,'.')+1) as com from dual;
+
+----'Asif.dafedar@gmail.com' Requirment is -->  F_name L_name  gmail com
+--select substr('Asif.dafedar@gmail.com',1,instr('Asif.dafedar@gmail.com','.',1,1)-1)as F_name,
+--substr('Asif.dafedar@gmail.com',instr('Asif.dafedar@gmail.com','.',1,1)+1,
+--instr('Asif.dafedar@gmail.com','@')-instr('Asif.dafedar@gmail.com','.',1,1)-1) as L_name,
+--substr('Asif.dafedar@gmail.com',instr('Asif.dafedar@gmail.com','@')+1,instr('Asif.dafedar@gmail.com','.',1,2)-
+--instr('Asif.dafedar@gmail.com','@')-1) as gmail,
+--substr('Asif.dafedar@gmail.com',instr('Asif.dafedar@gmail.com','.',1,2)+1) as com from dual;
+------OR---
+--select substr(email,1,instr(email,'.',1,1)-1) as F_name,
+--substr(email,instr(email,'.',1,1)+1,instr(email,'@')-instr(email,'.',1,1)-1) as L_name,
+--substr(email,instr(email,'@')+1,instr(email,'.',1,2)-instr(email,'@')-1) as gmail,
+--substr(email,instr(email,'.',1,2)+1) as com from dual;
+--select * from (select emp.*, dense_rank() over (order by sal desc) rr from emp) where rr<=2;
+--select * from (select emp.*, row_number() over (order by sal desc)rr from emp )where rr<=2;
+----delete from emp a where a.rowid<(select min(b.rowid) from emp b where a.empno=b.empno);
+--select * from (select emp.*,row_number() over (order by rowid) rr from emp) where rr<=(select (count(*)*0.5) from emp);
+--select max(sal) from emp;
+--select * from emp where sal in(select max(sal) from emp);
+--select max(sal) from emp where sal<(select max(sal) from emp);
+--select  * from emp a where (select count(distinct(b.sal)) from emp b where a.sal<=b.sal) in 2;
+--select empno,count(*)
+--from emp
+--group by empno
+--having count(*)>1;
+--select * from emp where empno in (select empno,count(*) from emp group by empno having count(*)>1);
+--select * from (select emp.*,dense_rank() over (partition by deptno order by sal desc)rr from emp);----with detail
+--select deptno, max(sal) from emp group by deptno order by deptno desc;
 
 
+--Test scenarios ===IMP***
+--mapping doc validation
+--structure validation
+--constrain validation
+--data completness isue
+--data correctness isue
+--data quality issue
+--date format issue
+--rcrd count b/w src and tgt
+--dup check 
+--null check
+--data validation 
+--complete data validation --> we minus query ,union, intersect,union all
 
 
+--desc emp;-- str validation
+--select count(*)from emp;
+--select count(*) from (select count(*) from emp group by empno);--- trans logic
+--select empno,count(*) from emp group by empno having count(*)>1;--dup check
+--select * from emp where empno is null;--NULL CHECK
+--select * from emp where empno=''; namimg space check
+--select count(distinct empno) from emp; --is their any unique rcrds
+--select * from src_tbl
+--minus
+--select * from tgt_tbl; --expt is o
+--
+--select * from src_tbl
+--minus
+--select * from tgt_tbl;--expt is o
+--
+--select * from src_tbl
+--minus
+--select * from tgt_tbl 
+--UNION
+--select * from src_tbl
+--minus
+--select * from tgt_tbl; --no data found or 0
+--
+--insert into tn(cn1,cn2,cn3) values(1,3,6); --IMP
+--EMPLOYEE_ID,FIRST_NAME,LAST_NAME,EMAIL,PHONE_NUMBER,HIRE_DATE,JOB_ID,SALARY,COMMISSION_PCT,MANAGER_ID,DEPARTMENT_ID
+--
 
+-- 'sssacademy@gmail.com'
 
+--select substr('sssacademy@gmail.com', instr('sssacademy@gmail.com','@')+1, instr('sssacademy@gmail.com','.')-
+--instr('sssacademy@gmail.com','@')-1) as service_provider from dual;
+ 
 
+--select * from (select emp.*,row_number() over (order by rowid) rr from emp) where rr>=(select count(*)*0.75 from emp);
+--select * from emp where rowid in (select min(rowid) from emp);
+--select * from emp where rowid in (select max(rowid) from emp);
+--select * from emp;
+--select * from emp a where a.rowid<(select min(b.rowid) rr from emp b where a.empno=b.empno);
 
+--'Asif Dafedar'
+select length('Asif Dafedar')-length(replace(lower('Asif Dafedar'),'a', ''))as a_count from dual;
 
+---------------JOINS-------------
 
+-------INNER J--COUNT=6
+-- select student.*,student1.*
+-- from student inner join student1
+-- on student.sid=student1.sid;
+-- 
+-- ------LEFT J---COUNT=8
+-- select student.*,student1.*
+-- from student left join student1
+-- on student.sid=student1.sid;
+-- ----RIGHT J---COUNT=9
+--  select student.*,student1.*
+-- from student RIGHT OUTER JOIN  student1
+-- on student.sid=student1.sid;
+-- ---FULL O J---COUNT 11
+--  select student.*,student1.*
+-- from student full outer join student1
+-- on student.sid=student1.sid;
+-- -----CROSS P J--COUNT=54
+--  select student.*,student1.*
+-- from student CROSS JOIN  student1;
+--
+--select * from student;
+--select * from student1;
+--
+--select a.sid,b.sid
+--from student a inner join student1 b
+--on a.sid=b.sid;
+--
+--select a.sid,b.sid
+--from student a right join student1 b
+--on a.sid=b.sid;
+--
+--select a.sid,b.sid
+--from student a left join student1 b
+--on a.sid=b.sid;
+--
+--select a.sid,b.sid
+--from student a full outer join student1 b
+--on a.sid=b.sid;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+--select * from student
+--union
+--select * from student1;
+--
+--select * from student
+--union all
+--select * from student1;
+--
+--select * from student
+--intersect
+--select * from student1;
+--
+--select * from student
+--minus
+--select * from student1;
+--
+--select * from student1
+--minus
+--select * from student;
+-------
+--select * from student
+--minus
+--select * from student1
+--union
+--select * from student1
+--minus
+--select * from student;
+--
+--select sid from student
+--union
+--select sid from student1;
+--
+--select sid from student
+--union all
+--select sid from student1;
+--
+--select sid from student
+--INTERSECT
+--select sid from student1;
+--
+--select sid from student1
+--minus
+--select sid from student;
+--a='Asifahmed dafedar'--> count of aA
+select regexp_count('Asifahmed dafedar','[aA]')as count_of_a from dual;
+select length('Asifahmed dafedar')-length(replace(lower('Asifahmed dafedar'),'a',''))as count_of_a from dual;
 
 
 
