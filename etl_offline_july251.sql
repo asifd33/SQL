@@ -101,11 +101,16 @@
 --select * from (select emp1.*, dense_rank() over (partition by deptno order by sal desc) 
 --as rank from emp1) where rank ='&N';
 --
-----------LIKE OPERATOR,,,,A%-STARTING,%A -ENDING---
---select ename from emp1 where ename like 'A%';
---select ename from emp1 where ename like '%A%';
---select ename from emp1 where ename like '_L%';
+--------LIKE OPERATOR,,,,A%-STARTING,%A -ENDING---
+--select ename from emp where ename like 'A%';
+--select ename from emp where ename not like '%A%';
+--select ename from emp where ename not like '_L%';
 --select ename from emp1 where length (ENAME) =5;
+--select * from emp;
+----'Shivaprasad'
+--select regexp_count('Shivaprasad','[S]') as count_of_s from dual;
+--select regexp_count(phone,'[0-9]') as count_of_s from tn;
+--select substr(sal,1,1)||rpad('*',length(sal)-1,'*')as masked_sal from emp;
 --
 --commit;
 --------------------JOINS
@@ -1423,6 +1428,9 @@ select length('Asif Dafedar')-length(replace(lower('Asif Dafedar'),'a', ''))as a
 --from student a full outer join student1 b
 --on a.sid=b.sid;
 
+--set_operators
+--select * from student;
+--select * from student1;
 --select * from student
 --union
 --select * from student1;
@@ -1462,13 +1470,83 @@ select length('Asif Dafedar')-length(replace(lower('Asif Dafedar'),'a', ''))as a
 --select sid from student
 --INTERSECT
 --select sid from student1;
---
---select sid from student1
+--select sid from student
 --minus
---select sid from student;
+--select sid from student1;
+----
+--select * from student1
+--minus
+--select * from student;
 --a='Asifahmed dafedar'--> count of aA
-select regexp_count('Asifahmed dafedar','[aA]')as count_of_a from dual;
-select length('Asifahmed dafedar')-length(replace(lower('Asifahmed dafedar'),'a',''))as count_of_a from dual;
+--select regexp_count('Asifahmed dafedar','[aA]')as count_of_a from dual;
+--select length('Asifahmed dafedar')-length(replace(lower('Asifahmed dafedar'),'a',''))as count_of_a from dual;
+
+-----EY INTERVIES QUERY
+-----two tables emp and dept emp-->deptno,ename,sal and dept--> deptno,dname --
+---requirment is retrieve deptwise max sal
+--select * from emp;
+--select * from dept;
+--select d.dname as dept_name,
+--max(e.sal)as highest_sal
+--from emp e join dept d
+--on e.deptno=d.deptno
+--group by dname;
+-----5 th HIGHEST SAL along with ENAME,JOB,SAL 
+--SELECT ENAME,JOB,SAL FROM (SELECT ENAME,JOB,SAl,DENSE_RANK() OVER (ORDER BY SAL DESC) AS SAL_RANK
+--FROM EMP JOIN DEPT ON EMP.DEPTNO=DEPT.DEPTNO) WHERE SAL_RANK=2;
+
+--CREATE TABLE  x(
+--    id VARCHAR2(5));
+--
+--INSERT INTO x VALUES(1);
+--INSERT INTO x VALUES (2);
+--INSERT INTO x VALUES (3);
+--INSERT INTO x VALUES (4);
+--INSERT INTO x VALUES (3);
+--INSERT INTO x VALUES  (4);
+--INSERT INTO x VALUES  (5);
+--INSERT INTO x VALUES  (NULL);
+--commit;
+--CREATE TABLE  y(
+--    id VARCHAR2(5));
+--
+--INSERT INTO y VALUES(1);
+--INSERT INTO y VALUES (2);
+--INSERT INTO y VALUES (3);
+--INSERT INTO y VALUES (4);
+--INSERT INTO y VALUES (7);
+--INSERT INTO y VALUES  (4);
+--INSERT INTO y VALUES  (8);
+--INSERT INTO y VALUES  (9);
+--commit;
+--select * from x;
+--select * from y;
+--
+--SELECT x.*, y.* --by this query we can retrieving matching and non matching records in two tables
+--FROM x 
+--FULL OUTER JOIN y 
+--    ON x.id = y.id;
+--"asif dafedar"
+--select substr('asif dafedar',1,instr('asif dafedar',' ')-1) as first_name from dual; --- firstname
+
+-- select substr('asif dafedar',instr('asif dafedar',' ')+1)  as last_name from dual; --lastname
+
+--select substr('asif dafedar',1,instr('asif dafedar',' ')-1) as first_name,
+--substr('asif dafedar',instr('asif dafedar',' ')+1)  as last_name from dual; 
+select * from dept;
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+			
 
 
 
